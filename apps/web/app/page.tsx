@@ -1,6 +1,7 @@
 "use client"
 import '../styles/globals.css';
 import AddTask from './AddTask';
+import { TaskList } from './TaskList';
 import { TasksProvider } from './useProviders';
 export default function Page() {
   return (
@@ -18,7 +19,7 @@ export default function Page() {
        <AddTask></AddTask>
         <p className='text-md text-left font-bold pt-2'>TODO</p>
              <div className='border-t-2 py-2'></div>
-          
+          <TaskList></TaskList>
         <p className='text-md text-left font-bold pt-2'>COMPLETED</p>
              <div className='border-t-2 py-2'></div>
     
