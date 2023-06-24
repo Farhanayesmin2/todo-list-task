@@ -1,0 +1,16 @@
+{
+  "name": "tailwind-config",
+  "version": "1.0.0",
+  "description": "Tailwind CSS configuration",
+  "dependencies": {
+    "tailwindcss": "^3.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.4"
+  },
+  "scripts": {
+    "build": "npm run tailwind build",
+    "tailwind": "tailwindcss build tailwind.css -o output.css"
+  }
+}
