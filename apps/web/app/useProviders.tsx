@@ -56,9 +56,9 @@ export const tasksReducer = (tasks: Task[], action: TaskAction): Task[] => {
 
 // Define the initial tasks
 const initialTasks: Task[] = [
-  { id: 0, text: "It's the first task", done: true },
-  { id: 1, text: "It's the second task", done: false },
-  { id: 2, text: "It's the third one", done: false },
+  { id: 0, text: "It's first task", done: true },
+  { id: 1, text: "It's  second task", done: false },
+  { id: 2, text: "It's  third one", done: false },
 ];
 
 // Create the TasksProvider component
