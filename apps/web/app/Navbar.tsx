@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { RiMenu2Fill, RiCloseFill } from "react-icons/ri";
 import { FiCheckSquare } from 'react-icons/fi';
