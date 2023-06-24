@@ -106,7 +106,7 @@ const Task = ({ task }: TaskProps): JSX.Element => {
       {taskContent}
       {/* Delete button */}
    <button
-				className=" sm:p-0 md:p-0 bg-gradient-to-r from-sky-400/70 via-gray-50 to-sky-400/70 flex items-center shadow-lg shadow-gray-300 hover:-translate-y-1 transition duration-500 rounded-lg px-2 ml-2"
+				className="  bg-gradient-to-r from-sky-400/70 via-gray-50 to-sky-400/70 flex items-center shadow-lg shadow-gray-300 hover:-translate-y-1 transition duration-500 rounded-lg px-2 ml-2"
 				onClick={() => {
 					Swal.fire({
 						title: "Delete Task",
