@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import React from 'react';
 import { useTasks, useTasksDispatch } from './useProviders';
-
+import Swal from 'sweetalert2';
+import { RiDeleteBin2Fill, RiEdit2Fill } from 'react-icons/ri';
 // Interface for the Task object
 interface Task {
   id: number;
@@ -54,25 +55,32 @@ const Task = ({ task }: TaskProps): JSX.Element => {
             });
           }}
         />
-        <button
-          className="bg-red-200 rounded-lg px-2 ml-2"
-          onClick={() => setIsEditing(false)}
-        >
-          Save
-        </button>
+        	<button
+					className="bg-gradient-to-r from-sky-400/70 via-gray-50 to-sky-400/70 shadow-lg shadow-gray-300 rounded-lg px-2 ml-2"
+					onClick={() => {
+						Swal.fire({
+							title: "Data saved!",
+							icon: "success",
+							confirmButtonText: "OK",
+						});
+						setIsEditing(false);
+					}}
+				>
+					Save
+				</button>
       </div>
     );
   } else {
     // Displaying task text and Edit button when not in edit mode
     taskContent = (
-      <div className="px-2">
+<div className="px-2 font-mono text-gray-600 flex items-center">
         {task.text}
-        <button
-          className="bg-red-200 rounded-lg px-2 ml-2"
-          onClick={() => setIsEditing(true)}
-        >
-          Edit
-        </button>
+        	<button
+					className="bg-gradient-to-r from-sky-400/70 via-gray-50 to-sky-400/70 flex items-center shadow-lg shadow-gray-300 hover:-translate-y-1 transition duration-500 rounded-lg px-2 ml-2"
+					onClick={() => setIsEditing(true)}
+				>
+					<RiEdit2Fill className="text-gray-950"></RiEdit2Fill> Edit
+				</button>
       </div>
     );
   }
@@ -97,17 +105,31 @@ const Task = ({ task }: TaskProps): JSX.Element => {
       {/* Displaying task content and buttons */}
       {taskContent}
       {/* Delete button */}
-      <button
-        className="bg-red-200 rounded-lg px-2"
-        onClick={() => {
-          dispatch.dispatch({
-            type: 'deleted',
-            id: task.id,
-          });
-        }}
-      >
-        Delete
-      </button>
+   <button
+				className=" sm:p-0 md:p-0 bg-gradient-to-r from-sky-400/70 via-gray-50 to-sky-400/70 flex items-center shadow-lg shadow-gray-300 hover:-translate-y-1 transition duration-500 rounded-lg px-2 ml-2"
+				onClick={() => {
+					Swal.fire({
+						title: "Delete Task",
+						text: "Are you sure you want to delete this task?",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#3085d6",
+						cancelButtonColor: "#d33",
+						confirmButtonText: "Yes, delete it!",
+					}).then((result) => {
+						if (result.isConfirmed) {
+							dispatch.dispatch({
+								type: "deleted",
+								id: task.id,
+							});
+
+							Swal.fire("Deleted!", "The task has been deleted.", "success");
+						}
+					});
+				}}
+			>
+				Delete<RiDeleteBin2Fill className="text-red-600"></RiDeleteBin2Fill> 
+			</button>
     </label>
   );
 }
