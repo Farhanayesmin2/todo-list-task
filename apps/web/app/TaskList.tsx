@@ -121,7 +121,7 @@ const Task = ({ task }: TaskProps): JSX.Element => {
 					});
 				}}
 			>
-				<RiDeleteBin2Fill className="text-red-600"></RiDeleteBin2Fill> Delete
+				Delete<RiDeleteBin2Fill className="text-red-600"></RiDeleteBin2Fill> 
 			</button>
 		</label>
 	);

@@ -1,28 +1,35 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
+// Define the Task interface
 interface Task {
   id: number;
   text: string;
   done: boolean;
 }
 
+// Define the different types of Task actions
 type TaskAction =
   | { type: 'added'; id: number; text: string }
   | { type: 'changed'; task: Task }
   | { type: 'deleted'; id: number };
 
-interface useProvidersType {
+// Define the type for the tasks state in the provider
+interface UseProvidersType {
   tasks: Task[];
 }
 
+// Define the type for the tasks dispatch context
 interface TasksDispatchContextType {
   dispatch: React.Dispatch<TaskAction>;
 }
 
-const useProviders = createContext<useProvidersType | null>(null);
+// Create the context for the tasks state
+const UseProviders = createContext<UseProvidersType | null>(null);
 
+// Create the context for the tasks dispatch
 const TasksDispatchContext = createContext<TasksDispatchContextType | null>(null);
 
+// Define the tasks reducer function
 export const tasksReducer = (tasks: Task[], action: TaskAction): Task[] => {
   switch (action.type) {
     case 'added': {
@@ -47,37 +54,37 @@ export const tasksReducer = (tasks: Task[], action: TaskAction): Task[] => {
   }
 };
 
-
-
+// Define the initial tasks
 const initialTasks: Task[] = [
   { id: 0, text: "It's the first task", done: true },
   { id: 1, text: "It's the second task", done: false },
   { id: 2, text: "It's the third one", done: false },
 ];
 
-export const TasksProvider=({ children }: { children: React.ReactNode }) =>{
+// Create the TasksProvider component
+export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
-    <useProviders.Provider value={{ tasks }}>
+    <UseProviders.Provider value={{ tasks }}>
       <TasksDispatchContext.Provider value={{ dispatch }}>
         {children}
       </TasksDispatchContext.Provider>
-    </useProviders.Provider>
+    </UseProviders.Provider>
   );
 }
 
-export  const useTasks=(): useProvidersType => {
-  const context = useContext(useProviders);
+// Custom hook to access the tasks state
+export const useTasks = (): UseProvidersType => {
+  const context = useContext(UseProviders);
   if (!context) {
     throw new Error('useTasks must be used within a TasksProvider');
   }
   return context;
 }
- 
 
-
- export const useTasksDispatch =(): TasksDispatchContextType =>{
+// Custom hook to access the tasks dispatch
+export const useTasksDispatch = (): TasksDispatchContextType => {
   const context = useContext(TasksDispatchContext);
   if (!context) {
     throw new Error('useTasksDispatch must be used within a TasksProvider');
