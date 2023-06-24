@@ -1,34 +1,11 @@
-
-
-import React from 'react';
-
-import Navbar from './Navbar';
-import Footer from './Footer';
-
+"use client"
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter, FaGithub, FaYoutube } from 'react-icons/fa';
 import { FiCheckSquare } from 'react-icons/fi';
-
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-
-      <body>
-        <Navbar></Navbar>
-        {children}
-  <Footer></Footer>
-
-      <body>{children}
-      
-      
-      
-      
-       <footer className="bg-gray-800 text-white py-8 px-4">
+const Footer = () => {
+    return (
+        <div>
+             <footer className="bg-gray-800 text-white py-8 px-4">
   <div className="container mx-auto grid grid-cols-1 gap-4 md:grid-cols-3 md:justify-between">
     <div className="flex items-center justify-center md:justify-start mb-4 md:mb-0">
       <span className="text-2xl mr-2 text-white">
@@ -67,10 +44,8 @@ export default function RootLayout({
     <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} farhana Yesmin, Inc. All rights reserved.</p>
   </div>
 </footer>
+        </div>
+    );
+};
 
-  
-
-      </body>
-    </html>
-  );
-}
+export default Footer;
